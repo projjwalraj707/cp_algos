@@ -1,7 +1,6 @@
 /*
-Passed these two test cases:
-	https://codeforces.com/edu/course/2/lesson/2/1/practice/contest/269100/problem/A
-	https://judge.yosupo.jp/problem/suffixarray
+	Explanations: https://projjwalraj.notion.site/Suffix-Array-1c030882c5d380d7a3fcde9331bd50e6?pvs=4
+				: https://projjwalraj.notion.site/Longest-Common-Prefix-LCP-1c330882c5d380e69dc9f00b3e3da710?pvs=4
 */
 #include <bits/stdc++.h>
 using namespace std;
