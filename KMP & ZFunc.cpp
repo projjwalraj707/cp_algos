@@ -2,12 +2,29 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> KMP(string& str) {
-	int n = str.length();
+int cntOccurences(string& str, string& pattern, int n, int m, vector<int>& piTable) {
+	int itr1 = 0, itr2 = 0, ans = 0;
+	while (itr1 < n) {
+		if (str[itr1] == pattern[itr2]) {
+			itr1++;
+			itr2++;
+			if (itr2 == m) {
+				itr2 = piTable.back();
+				ans++;
+			}
+		}
+		else if (itr2 == 0) itr1++;
+		else itr2 = piTable[itr2-1];
+	}
+	return ans;
+}
+
+vector<int> KMP(string& pattern) {
+	int n = pattern.length();
 	vector<int> ans(n);
 	int s = 0, e = 1;
 	while (e < n) {
-		if (str[s] == str[e]) ans[e++] = ++s;
+		if (pattern[s] == pattern[e]) ans[e++] = ++s;
 		else if (s != 0) s = ans[s-1];
 		else e++;
 	}
@@ -30,9 +47,13 @@ vector<int> Z_Func(string& str) {
 }
 
 int main() {
-	string str; cin>>str;
-	for (int x: Z_Func(str)) cout << x << ' '; cout << '\n';
-	for (int x:   KMP(str)) cout << x << ' '; cout << '\n';
+	string str = "abcabcabcabc";
+	string pattern = "abc";
+	vector<int> piTableForPattern = KMP(pattern);
+	for (int x: Z_Func(str)      ) cout << x << ' '; cout << '\n';
+	for (int x: piTableForPattern) cout << x << ' '; cout << '\n';
+	int cnt = cntOccurences(str, pattern, str.length(), pattern.length(), piTableForPattern);
+	cout << cnt << endl;
 	return 0;
 }
 

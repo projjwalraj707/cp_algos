@@ -6,6 +6,11 @@ class SegTree {
 public:
 	vector<ll> tree;
 	int N;
+	SegTree(const int n) {
+		N = n;
+		while (__builtin_popcount(N) != 1) N++;
+		tree.resize(2*N);
+	}
 	SegTree(const vector<int>& arr) {
 		N = arr.size();
 		while (__builtin_popcount(N) != 1) N++;
@@ -16,7 +21,7 @@ public:
 	ll f(int ql, int qr, int newVal, int node, int l, int r) {
 		if (ql > r || qr < l) return 0;
 		if (ql <= l && qr >= r) {
-			if (newVal != -1) tree[node] = newVal;
+			if (newVal != -1e18) tree[node] = newVal;
 			return tree[node];
 		}
 		int mid = (l+r)/2;
@@ -24,7 +29,7 @@ public:
 		tree[node] = tree[2*node] + tree[2*node+1];
 		return sum;
 	}
-	ll f(int ql, int qr, int newVal = -1) {
+	ll f(int ql, int qr, int newVal = -1e18) {
 		return f(ql, qr, newVal, 1, 0, N-1);
 	}
 };
