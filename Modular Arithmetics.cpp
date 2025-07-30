@@ -1,3 +1,15 @@
+ll modMul(vector<ll> nums) {
+	ll ans = 1;
+	for (ll& num: nums) ans = (ans * num) % MOD;
+	return ans;
+}
+
+ll modAdd(vector<ll> nums) {
+	ll ans = 0;
+	for (ll& num: nums) ans = (ans + num) % MOD;
+	return ans;
+}
+
 ll modExp(ll p, ll k) {
 	ll ans = 1;
 	int mask = 1;

@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-ll gcd(ll a, ll b) {
+ll findGCD(ll a, ll b) {
 	if (!b) return a;
-	return gcd(b, a%b);
+	return findGCD(b, a%b);
 }
 
 int main() {

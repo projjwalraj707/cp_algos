@@ -1,8 +1,9 @@
 class BinLift {
     vector<vector<int>> hier;
     vector<int> dist;
+	vector<ll> cumWeight;
 public:
-    BinLift(vector<int>& par, vector<int>& dist, vector<int>& cumWeight) {
+    BinLift(vector<int>& par, vector<int>& dist, vector<ll>& cumWeight) {
         int n = par.size();
         this->dist = dist;
         this->cumWeight = cumWeight;
@@ -35,8 +36,8 @@ public:
         if (currDist < 0) return 0;
         return findKthPar(node, currDist) == par;
     }
-    int findCumWeight(int node1, int node2) {
+    ll findCumWeight(int node1, int node2) {
         int lca = findLCA(node1, node2);
-        return cumWeight[node1]+cumWeight[node2] - 2*cumWeight[lca];
+        return cumWeight[node1]+cumWeight[node2]-2*cumWeight[lca];
     }
 };
